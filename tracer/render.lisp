@@ -5,8 +5,8 @@
 			    :width (horizontal-resolution *vp*)
 			    :height (vertical-resolution *vp*)))
 	(zw 100.0)
-	(ray (make-ray :origin (alloc-vec)
-		       :direction (vec 0.0 0.0 -1.0)))
+	(ray (make-ray :origin (sb-cga:alloc-vec)
+		       :direction (sb-cga:vec 0.0 0.0 -1.0)))
 	(pixel-color nil))
     (with-open-file (stream file
 			    :direction :output
@@ -25,7 +25,7 @@
 		  (y (* (pixel-size *vp*) 
 			(+ (y sample-point)
 			   (- r (* (vertical-resolution *vp*) 0.5))))))
-	      (setf (origin ray) (vec x y zw)
+	      (setf (origin ray) (sb-cga:vec x y zw)
 		    pixel-color (rgb+ pixel-color (trace-ray ray)))))
 	  (zpng:write-pixel (map-color (rgb/ pixel-color 
 					     (float (number-of-samples (sampler *vp*))))) png)))

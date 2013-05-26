@@ -19,7 +19,7 @@ using the specific sampling technique."))
 (defgeneric shuffle-y-coordinates (sampler)
   (:documentation "Shuffle the sampler's samples' y coordinates around."))
 
-(declaim (ftype (function (sampler) 2d-point) sample-unit-square)
+(declaim (ftype (function (sampler) point) sample-unit-square)
 	 (inline sample-unit-square))
 (defun sample-unit-square (sampler)
   "Retrieves the next point to take a sample of."
@@ -35,3 +35,4 @@ using the specific sampling technique."))
 ;;;; Compilation
 
 ;; create a compact version for use in the renderer
+
