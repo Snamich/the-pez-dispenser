@@ -1,25 +1,20 @@
-(setf *background-color* (make-rgb 0.0 0.0 0.0))
+(setf *background-color* (rgb 0.0 0.0 0.0))
 
 (setf *vp* (make-view-pln :horizontal-resolution 400
 			  :vertical-resolution 400
 			  :pixel-size 0.5
-			  :sample-# 16))
+			  :sampler (make-instance 'nrooks
+                                                  :num-samples 16
+                                                  :num-sets 83)))
 
-(push (make-instance 'sphere
-		     :center (make-3d-vec 0.0 0.0 0.0)
-		     :radius 80d0
-		     :obj-color (make-rgb 1.0 0.0 0.0)) ; red
-      *world*)
+(generate-samples (sampler *vp*))
 
-(push (make-instance 'sphere
-		     :center (make-3d-vec 0.0 30.0 0.0)
-		     :radius 60d0
-		     :obj-color (make-rgb 1.0 1.0 0.0)) ; yellow
-      *world*)
+(push (sphere 0.0 0.0 0.0 80.0 (rgb 1.0 0.0 0.0)) *world*)
+(push (sphere 0.0 30.0 0.0 60.0 (rgb 1.0 1.0 0.0)) *world*)
 
-(push (make-instance 'plane
-		     :point (make-3d-vec 0.0 0.0 0.0)
-		     :obj-normal (make-3d-vec 0.0 1.0 1.0)
-		     :obj-color (make-rgb 0.0 0.25 0.0)) ; dark green
-      *world*)
+;; (push (make-instance 'plane
+;; 		     :point (sb-cga:vec 0.0 0.0 0.0)
+;; 		     :obj-normal (sb-cga:vec 0.0 1.0 1.0)
+;; 		     :obj-color (rgb 0.0 0.25 0.0)) ; dark green
+;;       *world*)
 

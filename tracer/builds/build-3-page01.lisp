@@ -1,11 +1,12 @@
-(setf *vp* (make-view-pln :horizontal-resolution 400
-			  :vertical-resolution 400
+(setf *vp* (make-view-pln :horizontal-resolution 800
+			  :vertical-resolution 800
 			  :pixel-size 0.5
 			  :sampler (make-instance 'jittered
 						  :num-samples 16
 						  :num-sets 83)))
 
 (generate-samples (sampler *vp*))
+
 (defparameter yellow (rgb 1.0 1.0 0.0))
 (defparameter brown (rgb 0.71 0.40 0.16))
 (defparameter dark-green (rgb 0.0 0.41 0.41))
@@ -15,18 +16,6 @@
 (defparameter dark-yellow (rgb 0.61 0.61 0.0))
 (defparameter light-purple (rgb 0.65 0.3 1.0))
 (defparameter dark-purple (rgb 0.5 0.0 1.0))
-
-;; spheres
-(defun sphere (x y z r color)
-  (make-sphere 
-   :center (sb-cga:vec x y z)
-   :radius r
-   :obj-color color))
-
-(defmacro add-objects (&body body)
-  `(progn 
-     ,@(loop
-	  for obj in body collect `(push ,obj *world*))))
 
 (add-objects
 ;; (sphere 5.0 3.0 0.0 30.0 yellow)
