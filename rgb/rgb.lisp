@@ -28,6 +28,9 @@
 (define-opt-fun rgb* (a b)
   "Componentwise multiplication of RGB A and RGB B, result is freshly allocated RGB.")
 
+(defun rgb-scale (r s)
+  (rgb* r (rgb s s s)))
+
 (declaim (ftype (function (rgb) single-float) avg-rgb))
 (defun avg-rgb (rgb)
   "Average value of RGB components."
