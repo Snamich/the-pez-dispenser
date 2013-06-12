@@ -7,7 +7,7 @@
    (w :accessor w :type sb-cga:vec)
    (exposure-time :initform 1.0 :accessor exposure-time :type single-float)))
 
-(defgeneric render-scene (camera)
+(defgeneric render-scene (camera file)
   (:documentation "Renders the scene using the given camera and view plane."))
 
 (defgeneric ray-direction (camera x y))

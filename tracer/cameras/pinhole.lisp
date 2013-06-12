@@ -2,7 +2,7 @@
   ((d :initarg :d :accessor d :type single-float)
   (zoom :initform 1.0 :accessor zoom :type single-float)))
 
-(defmethod render-scene ((p pinhole))
+(defmethod render-scene ((p pinhole) file)
   (declare (optimize (debug 3) (speed 0) (safety 1)))
   (let ((png (make-instance 'zpng:pixel-streamed-png
 			    :color-type :truecolor
@@ -12,7 +12,7 @@
         (ray (make-ray :origin (eye p)
 		       :direction (sb-cga:alloc-vec)))
 	(pixel-color nil))
-    (with-open-file (stream *file*
+    (with-open-file (stream file
 			    :direction :output
 			    :if-exists :supersede
 			    :if-does-not-exist :create

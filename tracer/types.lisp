@@ -7,11 +7,11 @@
    :x x
    :y y))
 
-(defun sphere (x y z r color)
+(defun sphere (x y z r material)
   (make-sphere 
    :center (sb-cga:vec x y z)
    :radius r
-   :obj-color color))
+   :mat material))
 
 (defun square (x)
   (* x x))

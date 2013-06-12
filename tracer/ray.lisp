@@ -1,4 +1,4 @@
 (declaim (inline make-ray))
 (defstruct (ray (:conc-name nil))
-  (origin nil :type sb-cga:vec)
-  (direction nil :type sb-cga:vec))
+  (origin (sb-cga:alloc-vec) :type sb-cga:vec)
+  (direction (sb-cga:alloc-vec) :type sb-cga:vec))

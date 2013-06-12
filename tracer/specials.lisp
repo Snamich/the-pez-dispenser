@@ -8,4 +8,6 @@
 
 (defparameter *world* nil)
 (defparameter *vp* nil)
+(defparameter *lights* nil)
+(defparameter *ambient-light* nil)
 (defparameter *background-color* (alloc-rgb))

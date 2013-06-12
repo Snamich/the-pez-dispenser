@@ -32,7 +32,7 @@
 (defstruct (sphere (:conc-name nil))
   (center (sb-cga:alloc-vec) :type sb-cga:vec)
   (radius 0.0 :type single-float)
-  (obj-color))
+  (mat))
 
 (defmethod hit ((obj sphere) ray shader)
   (declare (optimize (speed 3)))
