@@ -1,8 +1,22 @@
-(defun trace-ray (ray)
+(defun trace-ray (ray depth)
   (let ((result (first-hit ray)))
     (if (hit? result)
 	(shade (material result) result)
 	*background-color*)))
+
+(defun whitted-trace-ray (ray depth)
+  (if (> depth *max-depth*)
+      *background-color*
+      (let ((result (first-hit ray)))
+        (if (hit? result)
+            (progn
+              (setf (depth result) depth)
+              (shade (material result) result))
+            *background-color*))))
+
+(defun trace-shadow-ray (ray)
+  (let ((result (first-hit ray)))
+    (hit? result)))
 
 (defun first-hit (ray)
   (let ((shader (make-shdr))

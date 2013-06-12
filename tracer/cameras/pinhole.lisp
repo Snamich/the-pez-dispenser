@@ -9,6 +9,7 @@
 			    :width (horizontal-resolution *vp*)
 			    :height (vertical-resolution *vp*)))
         (s (/ (pixel-size *vp*) (zoom p)))
+        (depth 0)
         (ray (make-ray :origin (eye p)
 		       :direction (sb-cga:alloc-vec)))
 	(pixel-color nil))
@@ -28,7 +29,7 @@
                    (y (* s (+ (y sample-point)
                               (- r (* (vertical-resolution *vp*) 0.5))))))
               (setf (direction ray) (ray-direction p x y )
-                    pixel-color (rgb+ pixel-color (trace-ray ray)))))
+                    pixel-color (rgb+ pixel-color (whitted-trace-ray ray depth)))))
           (zpng:write-pixel (map-color (rgb-scale (rgb/ pixel-color 
                                                         (float (number-of-samples (sampler *vp*))))
                                                   (exposure-time p)))

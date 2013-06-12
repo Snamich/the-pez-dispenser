@@ -36,4 +36,22 @@
                           l)))))
     l))
 
+(defclass reflective (phong)
+  ((pspecular-brdf :initarg :pspecular-brdf :accessor pspecular-brdf)))
+
+(defmethod shade ((r reflective) shdr)
+  (let ((p (make-instance 'phong :ambient-brdf (ambient-brdf r)
+                          :diffuse-brdf (diffuse-brdf r)
+                          :specular-brdf (specular-brdf r))))
+    (let ((l (shade p shdr)))
+      (let ((wo (sb-cga:vec* (direction (ray shdr)) -1.0)))
+        (multiple-value-bind (fr wi) (sample-f (pspecular-brdf r) shdr wo)
+          (let ((reflected-ray (make-ray :origin (hit-point shdr) :direction wi)))
+            (setf l (rgb+ (rgb* (rgb-scale (whitted-trace-ray reflected-ray (+ (depth shdr) 1))
+                                           (sb-cga:dot-product (normal shdr) wi))
+                                fr)
+                          l))
+            l))))))
+             
+
 

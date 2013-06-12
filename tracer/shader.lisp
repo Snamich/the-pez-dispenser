@@ -6,6 +6,7 @@
   (hit-point (sb-cga:alloc-vec) :type sb-cga:vec)
   (material)
   (direction (sb-cga:alloc-vec) :type sb-cga:vec)
+  (depth 0 :type fixnum)
   (ray (make-ray) :type ray)
   (normal (sb-cga:alloc-vec) :type sb-cga:vec)
   (color (alloc-rgb) :type rgb)

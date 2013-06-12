@@ -7,7 +7,9 @@
 (defconstant +k-huge-value+ 1.0E10)
 
 (defparameter *world* nil)
+(defparameter *camera* nil)
 (defparameter *vp* nil)
 (defparameter *lights* nil)
 (defparameter *ambient-light* nil)
 (defparameter *background-color* (alloc-rgb))
+(defparameter *max-depth* 3)

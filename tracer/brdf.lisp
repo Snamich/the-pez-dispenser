@@ -33,3 +33,22 @@
 
 (defmethod rho ((gs glossy-specular) shdr wo)
   (rgb 0.0 0.0 0.0))
+
+(defclass perfect-specular (brdf)
+  ((kr :initarg :kr :accessor kr :type single-float)
+   (cr :initarg :cr :accessor cr :type rgb)))
+
+(defmethod f ((ps perfect-specular) shdr wi wo)
+  (rgb 0.0 0.0 0.0))
+
+(defmethod rho ((gs glossy-specular) shdr wo)
+  (rgb 0.0 0.0 0.0))
+
+(defmethod sample-f ((gs perfect-specular) shdr wo)
+  (let* ((ndotwo (sb-cga:dot-product (normal shdr) wo))
+         (wi (sb-cga:vec+ (sb-cga:vec* (normal shdr) 
+                                       (* ndotwo 2.0))
+                          (sb-cga:vec* wo -1.0))))
+    (values (rgb/ (rgb-scale (cr gs) (kr gs))
+                  (sb-cga:dot-product (normal shdr) wi))
+            wi)))

@@ -1,5 +1,5 @@
 (defclass light ()
-  ((shadows :type symbol)))
+  ((shadows :initform t :accessor shadows :type symbol)))
 
 (defgeneric L (light shdr))
 
