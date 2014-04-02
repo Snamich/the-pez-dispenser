@@ -3,7 +3,7 @@
 (setf *vp* (make-view-pln :horizontal-resolution 400
 			  :vertical-resolution 400
 			  :pixel-size 0.5
-			  :sampler (make-instance 'nrooks
+			  :sampler (make-instance 'jittered
                                                   :num-samples 16
                                                   :num-sets 83)))
 

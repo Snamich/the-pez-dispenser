@@ -29,4 +29,4 @@
 (defparameter dark-purple (rgb 0.5 0.0 1.0))
 
 (add-objects
-  (sphere 0.0 0.0 0.0 30.0 (matte 0.6 0.2 (rgb 0.5 0.5 0.5)))
+  (sphere 0.0 0.0 0.0 30.0 (matte 0.6 0.2 (rgb 0.5 0.5 0.5))))
