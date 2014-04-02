@@ -1,35 +1,26 @@
 ;;__________________________________________________
 ;;;; RGB Definition
 
-(declaim (ftype (function () rgb) alloc-rgb)
-	 (inline alloc-rgb))
-(defun alloc-rgb ()
-  (declare (optimize (speed 3) (safety 1)))
-  (make-array 3 :element-type 'single-float))
+(deftype rgb () 'sb-cga:vec)
 
-(declaim (ftype (function (single-float single-float single-float) rgb) rgb)
-	 (inline rgb))
-(defun rgb (r g b)
-  (declare (optimize (speed 3) (safety 1)))
-  (make-array 3 :element-type 'single-float :initial-contents (list r g b)))
+(defun alloc-rgb () (sb-cga:alloc-vec))
+
+(defun rgb (r g b) (sb-cga:vec r g b))
 
 ;;__________________________________________________
 ;;;; RGB Operations
 
-(declaim (ftype (function (rgb rgb) rgb) rgb+))
-(define-opt-fun rgb+ (a b)
-  "Add RGB B to RGB A, result is freshly allocated RGB.")
+(defun rgb+ (a b)
+  (sb-cga:vec+ a b))
 
-(declaim (ftype (function (rgb single-float) rgb) rgb/))
-(define-opt-fun rgb/ (rgb s)
-  "Divide RGB by the SINGLE-FLOAT S, result is freshly allocated RGB.")
+(defun rgb/ (a f)
+  (sb-cga:vec/ a f))
 
-(declaim (ftype (function (rgb rgb) rgb) rgb*))
-(define-opt-fun rgb* (a b)
-  "Componentwise multiplication of RGB A and RGB B, result is freshly allocated RGB.")
+(defun rgb* (a b)
+  (sb-cga:hadamard-product a b))
 
-(defun rgb-scale (r s)
-  (rgb* r (rgb s s s)))
+(defun rgb-scale (a f)
+  (sb-cga:vec* a f))
 
 (declaim (ftype (function (rgb) single-float) avg-rgb))
 (defun avg-rgb (rgb)

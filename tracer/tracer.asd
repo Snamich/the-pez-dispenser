@@ -3,7 +3,8 @@
 (defsystem :tracer
   :description "A basic ray tracer."
   :author "Scott Chatham <snamich@gmail.com>"
-  :components ((:file "shader")
+  :components ((:file "rgb")
+               (:file "shader")
 	       (:file "ray")
 	       (:file "specials")
                (:file "lights")
@@ -22,5 +23,5 @@
 	       (:file "types")
 	       (:file "tracer")
                (:file "render"))
-  :depends-on (:zpng :sb-cga :rgb)
+  :depends-on (:zpng :sb-cga)
   :serial t)
