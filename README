@@ -1,0 +1,13 @@
+It's best to use quicklisp for loading the project as it will install any
+dependencies needed and it makes setup a snap.
+
+First, push the project's directory to the asdf central registry. This will
+make quicklisp aware of it.
+
+(push #p"~/Projects/the-pez-dispenser/" asdf:*central-registry*)
+
+Now you can load the project at the REPL with quicklisp:
+
+(ql:quickload "tracer")
+
+And you're good to go.
