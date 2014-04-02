@@ -1,4 +1,4 @@
-(defun trace-ray (ray depth)
+(defun trace-ray (ray)
   (let ((result (first-hit ray)))
     (if (hit? result)
 	(shade (material result) result)
