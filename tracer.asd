@@ -21,7 +21,6 @@
                (:file "cameras/pinhole")
 	       (:file "geometric-objects")
 	       (:file "types")
-	       (:file "tracer")
-               (:file "render"))
+	       (:file "tracer"))
   :depends-on (:zpng :sb-cga)
   :serial t)
