@@ -65,6 +65,13 @@
                  :colr color
                  :ls ls))
 
+(defun reset-world ()
+  (setf *world* nil)
+  (setf *lights* nil)
+  (setf *ambient-light* nil)
+  (setf *camera* nil)
+  (setf *vp* nil))
+
 ;; colors
 (defparameter yellow (rgb 1.0 1.0 0.0))
 (defparameter brown (rgb 0.71 0.40 0.16))
