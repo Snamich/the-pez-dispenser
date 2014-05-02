@@ -36,7 +36,7 @@
       (dotimes (p (number-of-sample-sets s))
 	(dotimes (i n)
 	  (dotimes (j n)
-	    (let ((k (rand j (- n 1)))
+	    (let ((k (random j (- n 1)))
 		  (temp (y (elt samples (+ (* j n) (* num-samples p) i)))))
 	     (setf (y (elt samples (+ (* j n) (* num-samples p) i)))
 		   (y (elt samples (+ (* k n) (* num-samples p) i)))
